@@ -16,17 +16,14 @@ jobs:
     - name: Remove lines from chongxie.txt
       run: |
         # 下载指定文件的内容到临时文件
-        curl -o temp_file.txt https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/chongxie.txt
+        curl -o chongxie.txt https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/chongxie.txt
 
         # 使用 sed 命令删除包含指定内容的行
-        sed -i '/^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh url reject-200/d' temp_file.txt
+        sed -i '/^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh url reject-200/d' chongxie.txt
 
         # 将修改后的内容覆盖回原文件
-        curl -X PUT -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-         -H "Content-Type: application/json" \
-         -d '{
-           "message": "Remove lines from chongxie.txt",
-           "content": "'"$(base64 temp_file.txt)"'",
-           "branch": "main"
-         }' \
-         "https://api.github.com/repos/${{ github.repository }}/contents/QuantumultX/rewrite/chongxie.txt"
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add chongxie.txt
+        git commit -m "Remove lines from chongxie.txt"
+        git push
