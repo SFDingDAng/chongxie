@@ -17,9 +17,10 @@ jobs:
       run: |
         # 下载指定文件的内容到临时文件
         curl -o chongxie.txt https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/chongxie.txt
+        curl -o test.py https://raw.githubusercontent.com/SFDingDAng/chongxie/main/test.py
 
-        # 使用 sed 命令删除包含指定内容的行
-        sed -i '/\^http\[s\]\?\:\\\/\\\/magev6\\\.if\\\.qidian\\\.com\\\/argus\\\/api\\\/v1\\\/bookshelf\\\/refresh url reject-200/d' chongxie.txt
+        # 使用 python 删除包含指定内容的行
+        python3 test.py
 
         sed -n '1748' chongxie.txt
 
