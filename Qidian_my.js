@@ -16,7 +16,7 @@ hostname = magev6.if.qidian.com
 
 if ($request.url.includes("argus/api/v3/user/getaccountpage")) {
   var Q = JSON.parse($response.body);
-  Q.Data.BenefitButtonList = Q.Data.BenefitButtonList(0,2);//福利中心
+  Q.Data.BenefitButtonList = Q.Data.BenefitButtonList.slice(0,2);//福利中心
   Q.Data.FunctionButtonList = [];//我发布的
   Q.Data.BottomButtonList = [];//帮助与客服
   Q.Data.AccountBalance.Hints = [];
