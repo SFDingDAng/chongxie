@@ -17,12 +17,9 @@ with open(filename, 'r') as file:
     lines = file.readlines()
 
 # 删除特定行并替换指定字符串
-new_lines = []
-for line in lines:
-    if not re.match(pattern_to_delete, line):
-        # 如果这行不是要删除的行，替换字符串
-        new_lines.append(re.sub(string_to_replace, replacement_string, line))
-    # 如果这行是要删除的行，则不执行任何操作，即不将其加入到new_lines中
+new_lines = [line for line in lines if line.strip("\n") != pattern_to_delete]
+new_lines = [re.sub(string_to_replace, replacement_string, line) for line in new_lines]
+
 
 # 将处理后的内容写回文件
 with open(filename, 'w') as file:
