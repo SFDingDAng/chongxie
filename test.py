@@ -16,17 +16,14 @@ filename = "chongxie.txt"
 with open(filename, 'r') as file:
     lines = file.readlines()
 
-# 处理每一行，删除或替换
+# 删除特定行并替换指定字符串
 new_lines = []
 for line in lines:
-    # 检查是否是要删除的行
-    if re.match(pattern_to_delete, line):
-        continue  # 不添加到new_lines，即删除该行
-    else:
-        # 不是要删除的行，检查是否需要替换字符串
-        line = re.sub(string_to_replace, replacement_string, line)
-        new_lines.append(line)
+    if not re.match(pattern_to_delete, line):
+        # 如果这行不是要删除的行，替换字符串
+        new_lines.append(re.sub(string_to_replace, replacement_string, line))
+    # 如果这行是要删除的行，则不执行任何操作，即不将其加入到new_lines中
 
-# 将修改后的内容写回文件
+# 将处理后的内容写回文件
 with open(filename, 'w') as file:
     file.writelines(new_lines)
