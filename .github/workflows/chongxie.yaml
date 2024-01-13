@@ -1,0 +1,25 @@
+name: Remove Lines from chongxie.txt
+
+on:
+  workflow_dispatch: # 手动触发工作流程
+  schedule:
+    - cron: '0 0 * * *' # 配置定时执行的时间间隔，例如每天午夜执行
+
+jobs:
+  remove_lines:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Remove lines from chongxie.txt
+      run: |
+        # 下载指定文件的内容到临时文件
+        curl -o temp_file.txt https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/chongxie.txt
+
+        # 使用 sed 命令删除包含指定内容的行
+        sed -i '/^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh url reject-200/d' temp_file.txt
+
+        # 将修改后的内容覆盖回原文件
+        curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" --data-binary @temp_file.txt "https://api.github.com/repos/${{ github.repository }}/contents/QuantumultX/rewrite/chongxie.txt?message=Remove%20lines%20from%20chongxie.txt"
