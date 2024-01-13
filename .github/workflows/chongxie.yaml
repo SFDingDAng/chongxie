@@ -21,6 +21,8 @@ jobs:
         # 使用 sed 命令删除包含指定内容的行
         sed -i '/\^http\[s\]\?\:\\\/\\\/magev6\\\.if\\\.qidian\\\.com\\\/argus\\\/api\\\/v1\\\/bookshelf\\\/refresh url reject-200/d' chongxie.txt
 
+        sed -n '1748' chongxie.txt
+
         # 将修改后的内容覆盖回原文件
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
