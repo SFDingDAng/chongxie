@@ -16,10 +16,8 @@ filename = "chongxie.txt"
 with open(filename, 'r') as file:
     lines = file.readlines()
 
-# 删除特定行并替换指定字符串
-new_lines = [line for line in lines if line.strip("\n") != pattern_to_delete]
-new_lines = [re.sub(string_to_replace, replacement_string, line) for line in new_lines]
-
+# 合并删除和替换操作的列表推导式
+new_lines = [re.sub(string_to_replace, replacement_string, line) for line in lines if not line.strip("\n").startswith(pattern_to_delete)]
 
 # 将处理后的内容写回文件
 with open(filename, 'w') as file:
