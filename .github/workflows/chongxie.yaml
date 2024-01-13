@@ -3,7 +3,7 @@ name: 删除特定字段
 on:
   workflow_dispatch: # 手动触发工作流程
   schedule:
-    - cron: '0 0 * * *' # 配置定时执行的时间间隔，例如每天午夜执行
+    - cron: '0 */6 * * *' # 配置定时执行的时间间隔，例如每天午夜执行
 
 jobs:
   remove_lines:
