@@ -28,5 +28,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add chongxie.txt
-        git commit -m "Remove lines from chongxie.txt"
+        git commit -m "同步上游并更新"
         git push
