@@ -2,7 +2,7 @@ import re
 
 # 要删除的行的模式
 pattern_to_delete = [
-    "^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh url reject-200",
+    "^https?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v\d\/bookshelf\/refresh url reject-200",
     "^https?:\/\/mlol\.qt\.qq\.com\/go\/recommend url reject"
 ]
 
